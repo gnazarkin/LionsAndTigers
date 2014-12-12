@@ -17,8 +17,11 @@ class ViewController: UIViewController {
     @IBOutlet weak var randomFactLabel: UILabel!
     
     var myTigers:[Tiger] = []
+    var lions:[Lion] = []
     
     var currentIndex = 0
+    
+    var currentAnimal = (species: "Tiger", index: 0)
     
     
     override func viewDidLoad() {
@@ -33,12 +36,12 @@ class ViewController: UIViewController {
         
         myTiger.age = myTiger.ageInTigerYearsFromAge(myTiger.age)
         
-        myTiger.chuff()
-        myTiger.chuffAtNumberOftimes(5, isLoud: false)
+//        myTiger.chuff()
+//        myTiger.chuffAtNumberOftimes(5, isLoud: false)
         
         self.myTigers.append(myTiger)
         
-        println("My Tiger's name is : \(myTiger.name), it's age is \(myTiger.age), it's breed is \(myTiger.breed) and it's image is \(myTiger.image)")
+//        println("My Tiger's name is : \(myTiger.name), it's age is \(myTiger.age), it's breed is \(myTiger.breed) and it's image is \(myTiger.image)")
         
         self.myImageView.image = myTiger.image
         self.nameLabel.text = myTiger.name
@@ -53,8 +56,6 @@ class ViewController: UIViewController {
         secondTiger.image = UIImage(named: "IndochineseTiger.jpg")
         
         secondTiger.age = secondTiger.ageInTigerYearsFromAge(secondTiger.age)
-        
-        secondTiger.chuff()
         
         var thirdTiger = Tiger()
         thirdTiger.name = "Jacob"
@@ -72,8 +73,26 @@ class ViewController: UIViewController {
         
         self.myTigers += [secondTiger, thirdTiger, fourthTiger]
         
-        myTiger.chuffANumberOfTimes(3)
-        secondTiger.chuffANumberOfTimes(2)
+        var lion = Lion()
+        lion.age = 4
+        lion.isAlphaMale = false
+        lion.image = UIImage(named: "Lion.jpg")
+        lion.name = "Mufasa"
+        lion.subspecies = "West African"
+        
+        var lioness = Lion()
+        lioness.age = 3
+        lioness.isAlphaMale = false
+        lioness.image = UIImage(named: "Lioness.jpeg")
+        lioness.name = "Sarabi"
+        lioness.subspecies = "Barbary"
+        
+        lion.roar()
+        lioness.roar()
+        
+        lion.changeToAlphaMale()
+        println(lion.isAlphaMale)
+        self.lions += [lion, lioness]
         
     }
 
@@ -112,8 +131,16 @@ class ViewController: UIViewController {
         })
     }
     
-    func printHelloWorld(){
-        println("HelloWorld")
+    func updateAnimal(){
+        switch currentAnimal {
+        case ("Tiger", _):
+            let randomIndex = Int(arc4random_uniform(UInt32(lions.count)))
+            currentAnimal = ("Lion", randomIndex)
+        default:
+            let randomIndex = Int(arc4random_uniform(UInt32(myTigers.count)))
+            currentAnimal = ("Tiger", randomIndex)
+        }
     }
+    
 }
 

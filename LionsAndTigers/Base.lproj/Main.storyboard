@@ -69,7 +69,7 @@
                                     </barButtonItem>
                                 </items>
                                 <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="0.0" y="622" width="375" height="44.5"/>
+                                    <rect key="frame" x="0.0" y="622" width="375" height="44"/>
                                 </variation>
                             </toolbar>
                         </subviews>
